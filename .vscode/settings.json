@@ -1,0 +1,5 @@
+{
+    "editor.minimap.autohide": true,
+    "editor.minimap.side": "right",
+    "workbench.iconTheme": "material-icon-theme"
+}
