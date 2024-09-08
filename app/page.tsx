@@ -1,10 +1,11 @@
-import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <h1 className="flex justify-center font-bold text-4xl">Ecommerce</h1>
+      <div className="lg:-mt-[5rem] bg-white dark:bg-black  ">
+        <Hero />
+      </div>
     </>
   );
 }
