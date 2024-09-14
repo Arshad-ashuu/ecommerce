@@ -6,7 +6,7 @@ import Image from "next/image";
 import { simplifiedProduct } from "@/app/interface";
 
 async function getData() {
-  const query = `*[_type == "product"][0...4] | order(_createdAt desc) {
+  const query = `*[_type == "product"] | order(_createdAt desc) {
         _id,
           price,
         "name":title,
@@ -20,7 +20,7 @@ async function getData() {
   return data;
 }
 
-export default async function Newest() {
+export default async function Carousel() {
   const data: simplifiedProduct[] = await getData();
 
   return (
@@ -28,7 +28,7 @@ export default async function Newest() {
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold tracking-tight dark:text-white text-gray-900">
-            Our Newest products
+            You might also like
           </h2>
 
           <Link className="text-primary flex items-center gap-x-1" href="/All">
@@ -55,7 +55,7 @@ export default async function Newest() {
                 />
               </div>
 
-              <div className="mt-4 flex justify-between px-2">
+              <div className="mt-4 flex justify-between px-2 py-3">
                 <div>
                   <h3 className="text-sm dark:text-gray-300 text-700 pointer">
                     <Link href={`/product/${product.slug}`}>

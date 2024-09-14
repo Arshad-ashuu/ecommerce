@@ -33,6 +33,7 @@ export default function AddToBag({
   };
   return (
     <Button
+      className="dark:hover:bg-white hover:bg-black hover:text-white dark:hover:text-black rounded-xl"
       onClick={() => {
         addItem(product), handleCartClick();
       }}

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { simplifiedProduct } from "../interface";
 import { client } from "@/lib/sanity";
 import Image from "next/image";
+import Carousel from "@/components/Carousel";
 
 async function getData(cateogry: string) {
   const query = `*[_type == "product" && category->name == "${cateogry}"] {
@@ -85,6 +86,7 @@ export default async function CategoryPage({
           </div>
         )}
       </div>
+      <Carousel />
     </div>
   );
 }

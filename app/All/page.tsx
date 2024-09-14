@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-import { client } from "../lib/sanity";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { simplifiedProduct } from "@/app/interface";
+import { client } from "@/lib/sanity";
 
 async function getData() {
-  const query = `*[_type == "product"][0...4] | order(_createdAt desc) {
+  const query = `*[_type == "product"] | order(_createdAt desc) {
         _id,
           price,
         "name":title,
@@ -20,7 +20,7 @@ async function getData() {
   return data;
 }
 
-export default async function Newest() {
+export default async function page() {
   const data: simplifiedProduct[] = await getData();
 
   return (
@@ -28,15 +28,8 @@ export default async function Newest() {
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold tracking-tight dark:text-white text-gray-900">
-            Our Newest products
+            Products
           </h2>
-
-          <Link className="text-primary flex items-center gap-x-1" href="/All">
-            See All{" "}
-            <span>
-              <ArrowRight />
-            </span>
-          </Link>
         </div>
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8  ">
@@ -55,7 +48,7 @@ export default async function Newest() {
                 />
               </div>
 
-              <div className="mt-4 flex justify-between px-2">
+              <div className="mt-4 flex justify-between px-2 py-3">
                 <div>
                   <h3 className="text-sm dark:text-gray-300 text-700 pointer">
                     <Link href={`/product/${product.slug}`}>

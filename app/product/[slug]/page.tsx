@@ -1,7 +1,8 @@
 import { fullProduct } from "@/app/interface";
-//import AddToBag from "@/components/AddToBag";
+import AddToBag from "@/components/AddToBag";
+import Carousel from "@/components/Carousel";
+import CheckoutNow from "@/components/CheckoutNow";
 import ImageGallery from "@/components/ImageGallery";
-//import CheckoutNow from "@/components/CheckoutNow";
 
 import { Button } from "@/components/ui/button";
 import { client } from "@/lib/sanity";
@@ -81,7 +82,7 @@ export default async function ProductPage({
             </div>
 
             <div className="flex gap-2.5">
-              {/* <AddToBag
+              <AddToBag
                 currency="USD"
                 description={data.description}
                 image={data.images[0]}
@@ -89,8 +90,8 @@ export default async function ProductPage({
                 price={data.price}
                 key={data._id}
                 price_id={data.price_id}
-              /> */}
-              {/* <CheckoutNow
+              />
+              <CheckoutNow
                 currency="USD"
                 description={data.description}
                 image={data.images[0]}
@@ -98,7 +99,7 @@ export default async function ProductPage({
                 price={data.price}
                 key={data._id}
                 price_id={data.price_id}
-              /> */}
+              />
             </div>
 
             <p className="mt-12 text-base text-gray-500 tracking-wide">
@@ -107,6 +108,7 @@ export default async function ProductPage({
           </div>
         </div>
       </div>
+      <Carousel />
     </div>
   );
 }

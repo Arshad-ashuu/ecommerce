@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import About from "@/components/About";
+import CartProvider from "@/components/providers";
+import ShoppingCartModal from "@/components/ShoppingCartModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,8 +28,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          {children}
+          <CartProvider>
+            <Navbar />
+            <ShoppingCartModal />
+            {children}
+          </CartProvider>
           <About />
         </ThemeProvider>
       </body>

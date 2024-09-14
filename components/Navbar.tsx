@@ -5,6 +5,16 @@ import React from "react";
 import { BsHandbag } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
 import { ModeToggle } from "./ModeToggle";
+import { useShoppingCart } from "use-shopping-cart";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const links = [
   { name: "Home", href: "/" },
@@ -15,6 +25,7 @@ const links = [
 ];
 export default function Navbar() {
   const pathname = usePathname();
+  const { handleCartClick, cartCount } = useShoppingCart();
   return (
     <div className="flex justify-center items-center mt-4  ">
       <div className=" z-[99] top-0 fixed ">
@@ -51,22 +62,30 @@ export default function Navbar() {
             </div>
             <div className="flex mx-4  text-gray-800 gap-3 ">
               <div className="relative">
-                <Link
-                  href="/cart"
+                <button
                   className="hover:text-[#46d729] text-white text-xl "
+                  onClick={() => handleCartClick()}
                 >
                   <BsHandbag />
-                </Link>
-                <span className="absolute -bottom-2 right-2 rounded-full px-[2px] font-bold bg-[#46d729] text-[12px] text-black ">
-                  01
+                </button>
+                <span className="absolute -bottom-2 right-2 rounded-full px-[3px] font-bold bg-[#46d729] text-[12px] w-4 text-white ">
+                  {cartCount == 0 ? "0 " : cartCount}
                 </span>
               </div>
-              <Link
-                href="/profile"
-                className="hover:text-[#46d729]  text-xl text-white"
-              >
-                <FaRegUser />
-              </Link>
+              <div className="hover:text-[#46d729]  text-xl text-white">
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <FaRegUser />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="mt-7 rounded-xl pointer">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handleCartClick}>
+                      <Link href="/signup">signin</Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </div>
           </div>
         </header>
